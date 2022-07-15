@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/picture-movie-database/static/css/main.d97c8fdd.css",
+    "main.js": "/picture-movie-database/static/js/main.a0cef9e8.js",
+    "index.html": "/picture-movie-database/index.html",
+    "main.d97c8fdd.css.map": "/picture-movie-database/static/css/main.d97c8fdd.css.map",
+    "main.a0cef9e8.js.map": "/picture-movie-database/static/js/main.a0cef9e8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d97c8fdd.css",
+    "static/js/main.a0cef9e8.js"
+  ]
+}
