@@ -5,12 +5,12 @@ import Navigation from "./components/Navigation";
 import MovieList from "./components/MovieList";
 import NotFound from "./components/NotFound";
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 
 const App = () => {
   return (
     <React.Fragment>
-      <BrowserRouter>
+      <HashRouter>
         <Navigation />
         <div className="noise"></div>
         <div className="overlay"></div>
@@ -20,7 +20,7 @@ const App = () => {
           <Route path="/movies" element={<MovieList />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </React.Fragment>
   )
 }
