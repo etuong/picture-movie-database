@@ -1,6 +1,6 @@
 # Picture Movie Database
 
-[Click here to see a demo](/)
+[Click here to see a demo](https://etuong.github.io/picture-movie-database/)
 
 ![](/screenshot.png)
 
