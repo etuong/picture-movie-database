@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 const ImageList = () => {
     const KEY = process.env.REACT_APP_FLICKR_API_KEY;
@@ -22,20 +22,24 @@ const ImageList = () => {
     }
 
     return (
-        <div className="body-content">
-            <header>
-                <h1>Pictures</h1>
-                <form id="form" onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        value={search}
-                        placeholder="Search"
-                        className="search"
-                        onChange={e => setSearch(e.target.value)}
-                    />
-                </form>
-            </header>
-            <main>
+
+
+        <div className="terminal">
+            <h1>Pictures</h1>
+
+            <p className="output">Search for pictures on Flickr</p>
+
+            <form id="form" onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    value={search}
+                    placeholder="Search"
+                    className="search-box"
+                    onChange={e => setSearch(e.target.value)}
+                />
+            </form>
+
+            <div className="gallery-container">
                 {images.map(image => {
                     let farm = image.farm;
                     let server = image.server;
@@ -49,7 +53,7 @@ const ImageList = () => {
                         </div>
                     );
                 })}
-            </main>
+            </div>
         </div>
     )
 }

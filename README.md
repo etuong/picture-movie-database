@@ -2,7 +2,7 @@
 
 [Click here to see a demo](/)
 
-![](/snapscout.png)
+![](/screenshot.png)
 
 ### Summary
 
@@ -16,6 +16,10 @@ The purpose of this project is to exercise React using public application progra
 
 Click the demo link or clone/download the repository on your local machine.
 Create a .env file in your root and put your API keys. 
+```
+REACT_APP_TMDB_API_KEY = ""
+REACT_APP_FLICKR_API_KEY = ""
+```
 
 ##### Install dependencies
 
