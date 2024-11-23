@@ -7,9 +7,7 @@ html {
 body {
   box-sizing: border-box;
   height: 100%;
-  background-color: #000000;
-  background-image: radial-gradient(#11581e, #041607),
-    url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif");
+  background: radial-gradient(#11581e, #041607), url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif");
   background-size: cover;
   font-family: "Inconsolata", Helvetica, sans-serif;
   font-size: 1.5rem;
@@ -19,7 +17,7 @@ body {
 
 .nav {
   ul {
-    list-style-type: none;
+    list-style: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -32,7 +30,7 @@ body {
 
   li a {
     display: block;
-    color: white;
+    color: #fff;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -55,7 +53,7 @@ div.gallery-container {
   div.gallery {
     width: 200px;
     height: 200px;
-    border: 1px solid white;
+    border: 1px solid #fff;
     float: left;
 
     img {
@@ -70,7 +68,7 @@ div.gallery-container {
   height: 30px;
   width: 250px;
   font-size: 1.1em;
-  border: 1px solid black;
+  border: 1px solid #000;
   outline: none;
   border-radius: 20px;
   padding-left: 15px;
@@ -81,8 +79,7 @@ div.gallery-container {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif");
-  background-repeat: no-repeat;
+  background: url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif") no-repeat center center;
   background-size: cover;
   z-index: -1;
   opacity: 0.02;
@@ -107,11 +104,8 @@ div.gallery-container {
   content: "";
   pointer-events: none;
   position: absolute;
-  display: block;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
   width: 100%;
   height: 100%;
   background-image: linear-gradient(
@@ -123,14 +117,13 @@ div.gallery-container {
     transparent 100%
   );
   background-repeat: no-repeat;
-  animation: scan 6s linear 0s infinite;
+  animation: scan 6s linear infinite;
 }
 
 @keyframes scan {
   0% {
     background-position: 0 -100vh;
   }
-
   35%,
   100% {
     background-position: 0 100vh;
@@ -141,35 +134,7 @@ div.gallery-container {
   height: 100%;
   text-transform: uppercase;
   padding: 30px;
-}
 
-.output {
-  color: rgba(128, 255, 128, 0.8);
-  text-shadow: 0 0 1px rgba(51, 255, 51, 0.4), 0 0 2px rgba(255, 255, 255, 0.8);
-}
-
-.output::before {
-  content: "> ";
-}
-
-a {
-  color: #fff;
-  text-decoration: none;
-}
-
-a::before {
-  content: "[";
-}
-
-a::after {
-  content: "]";
-}
-
-.errorcode {
-  color: white;
-}
-
-.terminal {
   main {
     width: 100%;
     display: flex;
@@ -180,7 +145,7 @@ a::after {
       width: 250px;
       height: 320px;
       margin: 20px 15px;
-      background: black;
+      background: #000;
       z-index: 1000;
     }
   }
@@ -200,6 +165,32 @@ a::after {
   }
 }
 
+.output {
+  color: rgba(128, 255, 128, 0.8);
+  text-shadow: 0 0 1px rgba(51, 255, 51, 0.4), 0 0 2px rgba(255, 255, 255, 0.8);
+
+  &::before {
+    content: "> ";
+  }
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+
+  &::before {
+    content: "[";
+  }
+
+  &::after {
+    content: "]";
+  }
+}
+
+.error-code {
+  color: #fff;
+}
+
 .movie {
   display: flex;
 
@@ -208,6 +199,7 @@ a::after {
   }
 
   .meta {
-    padding: 0px 20px;
+    padding: 0 20px;
   }
 }
+

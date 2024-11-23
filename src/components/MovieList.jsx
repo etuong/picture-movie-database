@@ -2,39 +2,34 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const MovieList = () => {
-  const KEY = process.env.REACT_APP_TMDB_API_KEY;
+  const apiKey = process.env.REACT_APP_TMDB_API_KEY;
 
-  const [search, setSearch] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
 
-  const IMGPATH = "https://image.tmdb.org/t/p/w1280";
-  const SEARCHAPI = `https://api.themoviedb.org/3/search/movie?&api_key=${KEY}&query=`;
+  const imgPath = "https://image.tmdb.org/t/p/w1280";
+  const searchUrl = `https://api.themoviedb.org/3/search/movie?&api_key=${apiKey}&query=`;
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (search) {
-      showMovies(SEARCHAPI + search);
-      setSearch("");
+
+    if (searchTerm) {
+      fetchMovies(searchUrl + searchTerm);
+      setSearchTerm("");
     }
   };
 
-  const showMovies = async (url) => {
-    setMovies([]);
+  const fetchMovies = async (url) => {
+    const response = await fetch(url);
+    const data = await response.json();
 
-    const data = await fetch(url).then((res) => res.json());
+    const movieArray = data.results.map((movie) => ({
+      id: movie.id,
+      title: movie.title,
+      poster: movie.poster_path,
+    }));
 
-    console.log(data.results);
-    const array = [];
-
-    data.results.forEach((element) => {
-      array.push({
-        id: element.id,
-        title: element.title,
-        poster: element.poster_path,
-      });
-    });
-
-    setMovies(array);
+    setMovies(movieArray);
   };
 
   return (
@@ -46,24 +41,22 @@ const MovieList = () => {
       <form id="form" onSubmit={handleSubmit}>
         <input
           type="text"
-          value={search}
+          value={searchTerm}
           placeholder="Search"
           className="search-box"
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={e => setSearchTerm(e.target.value)}
         />
       </form>
 
       <main>
-        {movies.map((movie, index) => {
-          return (
-            <Link to={`${movie.id}`} key={index}>
-              <div>
-                <img src={`${IMGPATH + movie.poster}`} alt="" />
-                <h2>{movie.title}</h2>
-              </div>
-            </Link>
-          );
-        })}
+        {movies.map((movie, index) => (
+          <Link to={`${movie.id}`} key={index}>
+            <div>
+              <img src={`${imgPath + movie.poster}`} alt="" />
+              <h2>{movie.title}</h2>
+            </div>
+          </Link>
+        ))}
       </main>
     </div>
   );

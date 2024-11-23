@@ -3,48 +3,47 @@ import { useParams } from "react-router-dom";
 
 const Movie = () => {
   const { id } = useParams();
-
-  const KEY = process.env.REACT_APP_TMDB_API_KEY;
-
-  const [movie, setMovie] = useState(undefined);
-
-  const IMGPATH = "https://image.tmdb.org/t/p/w1280";
+  const [movieData, setMovieData] = useState(undefined);
 
   useEffect(() => {
-    async function getMovie() {
-      const api = `https://api.themoviedb.org/3/movie/${id}?&api_key=${KEY}`;
-      const data = await fetch(api).then((res) => res.json());
+    const fetchMovie = async () => {
+      const apiUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+      const response = await fetch(apiUrl);
+      const data = await response.json();
 
-      setMovie({
-        genres: data.genres.map((genre) => genre.name).join(", "),
-        language: data.spoken_languages.english_name,
+      setMovieData({
         title: data.title,
+        genres: data.genres.map((genre) => genre.name).join(", "),
         overview: data.overview,
-        poster_path: data.poster_path,
-        release_date: data.release_date,
+        language: data.spoken_languages[0].english_name,
+        posterPath: data.poster_path,
+        releaseDate: data.release_date,
         runtime: data.runtime,
-        vote_average: data.vote_average,
+        voteAverage: data.vote_average,
       });
-    }
+    };
 
-    getMovie().catch(console.error);
-  }, []);
+    fetchMovie();
+  }, [id]);
 
   return (
     <div className="terminal">
-      {movie && (
+      {movieData && (
         <React.Fragment>
-          <h1>{movie.title}</h1>
+          <h1>{movieData.title}</h1>
           <div className="movie">
-            <img src={`${IMGPATH + movie.poster_path}`} alt="" />
+            <img
+              src={`https://image.tmdb.org/t/p/w1280${movieData.posterPath}`}
+              alt={movieData.title}
+            />
             <div className="meta">
-              <p className="output">Overview: {movie.overview}</p>
-              <p className="output">Genre(s): {movie.genres}</p>
-              <p className="output">Language: {movie.language}</p>
-              <p className="output">Release Date: {movie.release_date}</p>
-              <p className="output">Runtime (minutes): {movie.runtime}</p>
+              <p className="output">Overview: {movieData.overview}</p>
+              <p className="output">Genre(s): {movieData.genres}</p>
+              <p className="output">Language: {movieData.language}</p>
+              <p className="output">Release Date: {movieData.releaseDate}</p>
+              <p className="output">Runtime (minutes): {movieData.runtime}</p>
               <p className="output">
-                Average Score (out of 10): {movie.vote_average}
+                Average Score (out of 10): {movieData.voteAverage}
               </p>
             </div>
           </div>
