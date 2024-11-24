@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 
-const NotFoundPage = () => (
+const NotFound = () => (
     <div className="terminal">
         <h1>Page Not Found <span className="error-code">404</span></h1>
         <p className="output">
